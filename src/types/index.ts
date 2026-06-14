@@ -11,8 +11,11 @@ export interface Pet {
   id: string;
   name: string;
   species: string;
+  breed: string;
+  size: "small" | "medium" | "large";
   age: number;
   description: string;
+  imageUrl: string;
+  available: boolean;
   protectorId: string;
-  status: "available" | "adopted";
 }

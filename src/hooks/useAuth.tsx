@@ -26,15 +26,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     // onAuthStateChanged fires once on mount (with the persisted session if any)
     // and again whenever the user logs in or out
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+  const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      setLoading(true); // necessary for the state machine
+
+    try {
       if (firebaseUser) {
         const profile = await fetchUserProfile(firebaseUser.uid);
         setUserProfile(profile);
       } else {
         setUserProfile(null);
       }
+    } finally {
       setLoading(false);
-    });
+    }
+  });
 
     // Clean up the listener when the component unmounts
     return () => unsubscribe();

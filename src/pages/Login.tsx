@@ -17,6 +17,7 @@ export default function LoginPage() {
     try {
       await loginUser(email, password);
       navigate("/"); // Redirect to home after login
+      console.log("Alter");
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
@@ -49,7 +50,7 @@ export default function LoginPage() {
           </div>
 
           <div style={styles.field}>
-            <label htmlFor="senha" style={styles.label}>Password</label>
+            <label htmlFor="password" style={styles.label}>Password</label>
             <input
               id="password"
               type="password"
