@@ -34,12 +34,12 @@ export default function RegisterPage() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>Create an Account</h1>
-        <p style={styles.subtitle}>Join our pet adoption community</p>
+        <h1 style={styles.title}>Criar conta</h1>
+        <p style={styles.subtitle}>Entre para a nossa comunidade de adoca</p>
 
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.field}>
-            <label htmlFor="name" style={styles.label}>Full Name</label>
+            <label htmlFor="name" style={styles.label}>Nome completo</label>
             <input
               id="name"
               type="text"
@@ -74,13 +74,13 @@ export default function RegisterPage() {
               required
               minLength={6}
               style={styles.input}
-              placeholder="At least 6 characters"
+              placeholder="Pelo menos 6 caracteres"
             />
           </div>
 
           {/* Role selection — this is the core UX decision at registration */}
           <div style={styles.field}>
-            <label style={styles.label}>I want to…</label>
+            <label style={styles.label}>Eu quero…</label>
             <div style={styles.roleGroup}>
               <label style={styles.roleOption}>
                 <input
@@ -91,8 +91,7 @@ export default function RegisterPage() {
                   onChange={() => setRole("user")}
                 />
                 <span>
-                  <strong>Adopt a pet</strong>
-                  <small>Browse and request adoptions</small>
+                  <strong>Adotar pets</strong>
                 </span>
               </label>
 
@@ -105,8 +104,7 @@ export default function RegisterPage() {
                   onChange={() => setRole("protector")}
                 />
                 <span>
-                  <strong>List pets for adoption</strong>
-                  <small>I care for animals and want to find them homes</small>
+                  <strong>Colocar pets para adocao</strong>
                 </span>
               </label>
             </div>
@@ -120,8 +118,8 @@ export default function RegisterPage() {
         </form>
 
         <p style={styles.footer}>
-          Already have an account?{" "}
-          <Link to="/login" style={styles.link}>Sign in</Link>
+          Ja tem conta?{" "}
+          <Link to="/login" style={styles.link}>Entrar</Link>
         </p>
       </div>
     </div>

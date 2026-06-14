@@ -49,7 +49,7 @@ export default function LoginPage() {
           </div>
 
           <div style={styles.field}>
-            <label htmlFor="password" style={styles.label}>Password</label>
+            <label htmlFor="senha" style={styles.label}>Password</label>
             <input
               id="password"
               type="password"
@@ -69,7 +69,7 @@ export default function LoginPage() {
         </form>
 
         <p style={styles.footer}>
-          Don't have an account?{" "}
+          N tem uma conta?{" "}
           <Link to="/register" style={styles.link}>Register</Link>
         </p>
       </div>

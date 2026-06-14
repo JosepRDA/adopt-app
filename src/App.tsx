@@ -3,11 +3,7 @@ import { AuthProvider } from "./hooks/useAuth";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
-
-// Placeholder — you'll replace this with a real HomePage later
-function HomePage() {
-  return <h1 style={{ textAlign: "center", marginTop: "3rem" }}>🐾 Pet Adoption Platform</h1>;
-}
+import Home from "./pages/Home";
 
 export default function App() {
   return (
@@ -18,12 +14,12 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          {/* Protected routes */}
+          {/* Protected routes. Require Login.*/}
           <Route
             path="/"
             element={
               <PrivateRoute>
-                <HomePage />
+                <Home />
               </PrivateRoute>
             }
           />

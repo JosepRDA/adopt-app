@@ -10,7 +10,7 @@ export default function PrivateRoute({ children }: PrivateRouteProps) {
 
   // Don't redirect while auth state is being resolved
   if (loading) {
-    return <p style={{ textAlign: "center", marginTop: "2rem" }}>Loading…</p>;
+    return <p style={{ textAlign: "center", marginTop: "2rem" }}>Carregando…</p>;
   }
 
   if (!userProfile) {
