@@ -15,7 +15,7 @@ export default function PetFiltersBar({ filters, onChange }: PetFiltersProps) {
     <div style={styles.container}>
       <input
         type="text"
-        placeholder="Search by name, breed or species…"
+        placeholder="Procurar"
         value={filters.search}
         onChange={(e) => onChange({ search: e.target.value })}
         style={styles.searchInput}

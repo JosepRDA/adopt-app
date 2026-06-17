@@ -30,7 +30,7 @@ export default function AddPetPage() {
         <h1 style={styles.title}>Add a New Pet</h1>
         <p style={styles.subtitle}>Fill in the details to create a new adoption listing.</p>
         <div style={styles.card}>
-          <PetForm onSubmit={handleSubmit} submitLabel="Create Listing" />
+          <PetForm onSubmit={handleSubmit} submitLabel="Anunciar" />
         </div>
       </main>
     </div>

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import type { Pet } from "../types";
 
@@ -111,38 +112,28 @@ export default function PetForm({ initialData, onSubmit, submitLabel }: PetFormP
       </div>
 
       <div style={styles.row}>
-        <Field label="Size">
+        <Field label="Tamanho">
           <select name="size" value={formData.size} onChange={handleChange} style={styles.input}>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
+            <option value="Pequeno">Small</option>
+            <option value="Medio">Medium</option>
+            <option value="Grande">Large</option>
           </select>
         </Field>
 
-        <Field label="Status">
-          <select
-            name="available"
-            value={formData.available ? "true" : "false"}
-            onChange={(e) =>
-              setFormData((prev) => ({ ...prev, available: e.target.value === "true" }))
-            }
+        <Field label="Link da Imagem">
+          <input
+            type="url"
+            name="imageUrl"
+            value={formData.imageUrl}
+            onChange={handleChange}
             style={styles.input}
-          >
-            <option value="true">Available</option>
-            <option value="false">Adopted</option>
-          </select>
+            placeholder="https://example.com/pet-photo.jpg"
+            required
+          />
         </Field>
+
       </div>
 
-      <Field label="Image URL">
-        <input
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleChange}
-          style={styles.input}
-          placeholder="https://example.com/pet-photo.jpg"
-        />
-      </Field>
 
       <Field label="Description">
         <textarea
@@ -152,7 +143,7 @@ export default function PetForm({ initialData, onSubmit, submitLabel }: PetFormP
           required
           rows={4}
           style={{ ...styles.input, resize: "vertical" }}
-          placeholder="Tell potential adopters about this pet's personality…"
+          placeholder="Conte a potenciais adotantes um pouco sobre esse pet…"
         />
       </Field>
 
@@ -186,6 +177,7 @@ const styles: Record<string, React.CSSProperties> = {
     width: "100%",
     boxSizing: "border-box",
     backgroundColor: "#fff",
+    color: "black"
   },
   error: { color: "#c62828", fontSize: "0.85rem", margin: 0 },
   submitButton: {

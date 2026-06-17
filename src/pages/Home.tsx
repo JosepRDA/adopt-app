@@ -16,7 +16,7 @@ export default function HomePage() {
 
   async function handleDelete(pet: Pet) {
     const confirmed = window.confirm(
-      `Are you sure you want to delete "${pet.name}"? This cannot be undone.`
+      `Certeza de que deseja deletar "${pet.name}"? Isso sera permanente.`
     );
     if (!confirmed) return;
 

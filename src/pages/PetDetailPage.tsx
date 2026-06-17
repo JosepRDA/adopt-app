@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchPetById } from "../services/petService";
 import { useAuth } from "../hooks/useAuth";
+import  petPlaceholder  from "../assets/pet_placeholder.svg";
 import type { Pet } from "../types";
 import Navbar from "../components/NavBar";
 
@@ -46,18 +47,17 @@ export default function PetDetailPage() {
           ← Back to listings
         </button>
 
-        {loading && <p style={styles.status}>Loading…</p>}
+        {loading && <p style={styles.status}>Carregando…</p>}
         {error && <p style={styles.errorText}>{error}</p>}
 
         {pet && (
           <div style={styles.card}>
             <img
-              src={pet.imageUrl || "https://placehold.co/800x400?text=No+Image"}
+              src={pet.imageUrl || petPlaceholder}
               alt={pet.name}
               style={styles.image}
               onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  "https://placehold.co/800x400?text=No+Image";
+                (e.target as HTMLImageElement).src = petPlaceholder
               }}
             />
 
@@ -88,6 +88,7 @@ export default function PetDetailPage() {
 
               <div style={styles.buttonRow}>
                 {/* Adoption request will be wired up in the next phase */}
+                {/* To implement. The button should redirect to AdoptionForm.tsx defined in ../components/ */}
                 {userProfile?.role === "user" && pet.available && (
                   <button style={styles.adoptButton}>
                     Request Adoption
