@@ -6,11 +6,15 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  query,
+  where,
+  writeBatch,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import type { Pet } from "../types";
 
 const PETS_COLLECTION = "pets";
+const ADOPTION_REQUESTS_COLLECTION = "adoptionRequests";
 
 // Fetch all pets — filtering happens client-side in the hook
 export async function fetchAllPets(): Promise<Pet[]> {
@@ -42,7 +46,34 @@ export async function updatePet(
   await updateDoc(doc(db, PETS_COLLECTION, petId), petData);
 }
 
-// Delete a pet listing — protector only
+// Delete a pet listing — protector only (deleting their own pet, no pending requests expected
+// in the normal flow, but this stays a plain delete to match existing behavior)
 export async function deletePet(petId: string): Promise<void> {
   await deleteDoc(doc(db, PETS_COLLECTION, petId));
+}
+
+// Admin-only: remove a listing that has been reported.
+// Deletes the pet AND rejects any still-pending adoption requests for it,
+// so no request is left "pending" for a pet that no longer exists.
+export async function removeReportedPet(petId: string): Promise<void> {
+  const batch = writeBatch(db);
+
+  // 1. Delete the pet itself
+  batch.delete(doc(db, PETS_COLLECTION, petId));
+
+  // 2. Find any pending adoption requests for this pet and reject them
+  const pendingRequestsQuery = query(
+    collection(db, ADOPTION_REQUESTS_COLLECTION),
+    where("petId", "==", petId),
+    where("status", "==", "pending")
+  );
+  const pendingRequestsSnapshot = await getDocs(pendingRequestsQuery);
+
+  pendingRequestsSnapshot.docs.forEach((document) => {
+    batch.update(doc(db, ADOPTION_REQUESTS_COLLECTION, document.id), {
+      status: "rejected",
+    });
+  });
+
+  await batch.commit();
 }

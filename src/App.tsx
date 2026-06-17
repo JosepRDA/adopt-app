@@ -10,6 +10,9 @@ import EditPetPage from "./pages/EditPetPage";
 import AdoptionRequestPage from "./pages/AdoptionRequestPage";
 import MyRequestsPage from "./components/MyRequestsPage";
 import ManageRequestsPage from "./pages/ManageRequestsPage";
+import AdminPanelPage from "./pages/AdminPanelPage";
+import AdminRoute from "./components/AdminRoute";
+import ReportListingPage from "./pages/ReportListingPage";
 
 export default function App() {
   return (
@@ -26,8 +29,10 @@ export default function App() {
           <Route path="/pets/:id" element={<PrivateRoute><PetDetailPage /></PrivateRoute>} />
           <Route path="/pets/:id/edit" element={<PrivateRoute><EditPetPage /></PrivateRoute>} />
           <Route path="/pets/:petId/adopt" element={<PrivateRoute><AdoptionRequestPage /></PrivateRoute>} />
+          <Route path="/pets/:petId/report" element={<PrivateRoute><ReportListingPage /></PrivateRoute>} />
           <Route path="/my-requests" element={<PrivateRoute><MyRequestsPage /></PrivateRoute>} />
           <Route path="/manage-requests" element={<PrivateRoute><ManageRequestsPage /></PrivateRoute>} />
+          <Route path="/admin" element={<AdminRoute><AdminPanelPage /></AdminRoute>} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

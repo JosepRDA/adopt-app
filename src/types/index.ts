@@ -38,3 +38,24 @@ export interface AdoptionRequest {
   createdAt: Timestamp; // Firestore Timestamp — see note in adoptionService.ts
 }
 
+export type ReportReason =
+  | "Suspected animal abuse"
+  | "Fake listing"
+  | "Spam or bot listing"
+  | "Incorrect information"
+  | "Other";
+
+export type ReportStatus = "open" | "resolved" | "dismissed";
+
+export interface Report {
+  id: string;
+  petId: string;
+  petName: string;
+  reporterId: string;
+  reporterName: string;
+  ownerId: string;
+  reason: ReportReason;
+  description: string;
+  status: ReportStatus;
+  createdAt: Timestamp;
+}

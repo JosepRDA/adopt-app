@@ -107,6 +107,16 @@ export default function PetDetailPage() {
                     </button>
                   </>
                 )}
+                { /* So aparece pra admin */}
+                {userProfile && userProfile.uid !== pet.protectorId && userProfile.role !== "admin" && (
+                  <button
+                    onClick={() => navigate(`/pets/${pet.id}/report`)}
+                    style={styles.reportButton}
+                  >
+                    Report Listing
+                  </button>
+                )}
+
               </div>
             </div>
           </div>
@@ -196,6 +206,16 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
     fontWeight: 700,
     fontSize: "1rem",
+  },
+  reportButton: {
+    padding: "0.75rem 1.5rem",
+    backgroundColor: "#fff",
+    color: "#888",
+    border: "1px solid #ccc",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontWeight: 600,
+    fontSize: "0.9rem",
   },
 };
 
