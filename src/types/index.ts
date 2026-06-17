@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export type UserRole = "user" | "protector" | "admin";
 
 export interface UserProfile {
@@ -19,3 +21,20 @@ export interface Pet {
   available: boolean;
   protectorId: string;
 }
+
+export type AdoptionRequestStatus = "pending" | "approved" | "rejected";
+
+export interface AdoptionRequest {
+  id: string;
+  petId: string;
+  petName: string;
+  applicantId: string;
+  applicantName: string;
+  ownerId: string;
+  motivation: string;
+  housingDescription: string;
+  petExperience: string;
+  status: AdoptionRequestStatus;
+  createdAt: Timestamp; // Firestore Timestamp — see note in adoptionService.ts
+}
+

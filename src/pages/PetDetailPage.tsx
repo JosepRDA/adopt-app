@@ -90,7 +90,9 @@ export default function PetDetailPage() {
                 {/* Adoption request will be wired up in the next phase */}
                 {/* To implement. The button should redirect to AdoptionForm.tsx defined in ../components/ */}
                 {userProfile?.role === "user" && pet.available && (
-                  <button style={styles.adoptButton}>
+                  <button 
+                  onClick={() => navigate(`/pets/${pet.id}/adopt`)}
+                  style={styles.adoptButton}>
                     Request Adoption
                   </button>
                 )}
