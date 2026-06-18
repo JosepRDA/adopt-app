@@ -59,3 +59,20 @@ export interface Report {
   status: ReportStatus;
   createdAt: Timestamp;
 }
+
+export interface Chat {
+  id: string;
+  petId: string;
+  userId: string;
+  protectorId: string;
+  createdAt: Timestamp;
+  lastMessageAt: Timestamp;
+}
+
+export interface ChatMessage {
+  id: string;
+  chatId: string;
+  senderId: string;
+  text: string;
+  createdAt: Timestamp;
+}

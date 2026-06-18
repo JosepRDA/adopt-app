@@ -13,6 +13,9 @@ import ManageRequestsPage from "./pages/ManageRequestsPage";
 import AdminPanelPage from "./pages/AdminPanelPage";
 import AdminRoute from "./components/AdminRoute";
 import ReportListingPage from "./pages/ReportListingPage";
+import ChatPage from "./pages/ChatPage";
+import ConversationListPage from "./pages/ConversationListPage";
+import AdminBlockRoute from "./components/AdminBlockRoute";
 
 export default function App() {
   return (
@@ -32,11 +35,17 @@ export default function App() {
           <Route path="/pets/:petId/report" element={<PrivateRoute><ReportListingPage /></PrivateRoute>} />
           <Route path="/my-requests" element={<PrivateRoute><MyRequestsPage /></PrivateRoute>} />
           <Route path="/manage-requests" element={<PrivateRoute><ManageRequestsPage /></PrivateRoute>} />
-          <Route path="/admin" element={<AdminRoute><AdminPanelPage /></AdminRoute>} />
 
+          <Route path="/pets/:petId/chat" element={<AdminBlockRoute><ChatPage /></AdminBlockRoute>} />
+          <Route path="/chats/:chatId" element={<AdminBlockRoute><ChatPage/></AdminBlockRoute>} />
+          <Route path="/chats" element={<AdminBlockRoute><ConversationListPage /></AdminBlockRoute>} />
+
+          <Route path="/admin" element={<AdminRoute><AdminPanelPage /></AdminRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
   );
 }
+
+

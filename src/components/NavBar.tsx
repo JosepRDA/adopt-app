@@ -29,6 +29,13 @@ export default function Navbar() {
           </span>
         )}
 
+        {/* Visible to both users and protectors — not admins */}
+        {(userProfile?.role === "user" || userProfile?.role === "protector") && (
+          <span onClick={() => navigate("/chats")} style={styles.navLink}>
+            My Chats
+          </span>
+        )}
+
         {/* Only admins see this link */}
         {userProfile?.role === "admin" && (
           <span onClick={() => navigate("/admin")} style={styles.navLink}>

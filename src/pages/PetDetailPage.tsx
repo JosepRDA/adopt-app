@@ -117,6 +117,17 @@ export default function PetDetailPage() {
                   </button>
                 )}
 
+                {userProfile?.role === "user" &&
+                  userProfile.uid !== pet.protectorId &&
+                  pet.available && (
+                    <button
+                      onClick={() => navigate(`/pets/${pet.id}/chat`)}
+                      style={styles.chatButton}
+                    >
+                      Chat with Protector
+                    </button>
+                )}
+
               </div>
             </div>
           </div>
@@ -216,6 +227,16 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
     fontWeight: 600,
     fontSize: "0.9rem",
+  },
+  chatButton: {
+    padding: "0.75rem 1.5rem",
+    backgroundColor: "#fff",
+    color: "#1565c0",
+    border: "1px solid #1565c0",
+    borderRadius: "6px",
+    cursor: "pointer",
+    fontWeight: 700,
+    fontSize: "1rem",
   },
 };
 
